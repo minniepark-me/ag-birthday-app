@@ -423,10 +423,10 @@ vibe_box_html = f"""
     <p>"{st.session_state.current_message}"</p>
   </div>
   <script>
-    function reportHeight() {
+    function reportHeight() {{
       const height = document.body.scrollHeight;
-      window.parent.postMessage({type: "streamlit:setFrameHeight", height: height}, "*");
-    }
+      window.parent.postMessage({{type: "streamlit:setFrameHeight", height: height}}, "*");
+    }}
     window.addEventListener("load", reportHeight);
     new ResizeObserver(reportHeight).observe(document.body);
     setTimeout(reportHeight, 100);
