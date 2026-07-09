@@ -257,7 +257,7 @@ intro_html = """
 </body>
 </html>
 """
-components.html(intro_html, height=80, scrolling=False)
+components.html(intro_html, height=170, scrolling=True)
 
 # THE SILVER SURVIVAL GUIDE (Likes & Dislikes) — rendered as a real embedded HTML
 # component instead of st.markdown, since that's the only method proven to
@@ -330,7 +330,7 @@ survival_guide_html = """
 </html>
 """
 
-components.html(survival_guide_html, height=280, scrolling=False)
+components.html(survival_guide_html, height=460, scrolling=True)
 
 st.divider()
 
@@ -434,7 +434,7 @@ vibe_box_html = f"""
 </body>
 </html>
 """
-components.html(vibe_box_html, height=120, scrolling=False)
+components.html(vibe_box_html, height=180, scrolling=True)
 
 st.divider()
 
@@ -497,4 +497,4 @@ footer_html = """
 </body>
 </html>
 """
-components.html(footer_html, height=50, scrolling=False)
+components.html(footer_html, height=70, scrolling=True)
