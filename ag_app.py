@@ -245,10 +245,19 @@ intro_html = """
 </head>
 <body>
   <p>I might have been down with a fever on your actual birthday, but our friendship deserves to be celebrated every single day. Identity Verified. Welcome to your peaceful space, Ag.</p>
+  <script>
+    function reportHeight() {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({type: "streamlit:setFrameHeight", height: height}, "*");
+    }
+    window.addEventListener("load", reportHeight);
+    new ResizeObserver(reportHeight).observe(document.body);
+    setTimeout(reportHeight, 100);
+  </script>
 </body>
 </html>
 """
-components.html(intro_html, height=150, scrolling=True)
+components.html(intro_html, height=80, scrolling=False)
 
 # THE SILVER SURVIVAL GUIDE (Likes & Dislikes) — rendered as a real embedded HTML
 # component instead of st.markdown, since that's the only method proven to
@@ -308,11 +317,20 @@ survival_guide_html = """
       </div>
     </div>
   </div>
+  <script>
+    function reportHeight() {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({type: "streamlit:setFrameHeight", height: height}, "*");
+    }
+    window.addEventListener("load", reportHeight);
+    new ResizeObserver(reportHeight).observe(document.body);
+    setTimeout(reportHeight, 100);
+  </script>
 </body>
 </html>
 """
 
-components.html(survival_guide_html, height=560, scrolling=True)
+components.html(survival_guide_html, height=280, scrolling=False)
 
 st.divider()
 
@@ -404,10 +422,19 @@ vibe_box_html = f"""
   <div class="box">
     <p>"{st.session_state.current_message}"</p>
   </div>
+  <script>
+    function reportHeight() {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({type: "streamlit:setFrameHeight", height: height}, "*");
+    }
+    window.addEventListener("load", reportHeight);
+    new ResizeObserver(reportHeight).observe(document.body);
+    setTimeout(reportHeight, 100);
+  </script>
 </body>
 </html>
 """
-components.html(vibe_box_html, height=220, scrolling=True)
+components.html(vibe_box_html, height=120, scrolling=False)
 
 st.divider()
 
@@ -458,7 +485,16 @@ footer_html = """
 </head>
 <body>
   <p>Made with 💖 by your Meghyung (aka Megha Prasad) for my dear Silver Ag ✨</p>
+  <script>
+    function reportHeight() {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({type: "streamlit:setFrameHeight", height: height}, "*");
+    }
+    window.addEventListener("load", reportHeight);
+    new ResizeObserver(reportHeight).observe(document.body);
+    setTimeout(reportHeight, 100);
+  </script>
 </body>
 </html>
 """
-components.html(footer_html, height=80, scrolling=True)
+components.html(footer_html, height=50, scrolling=False)
