@@ -205,8 +205,8 @@ if photo_path:
         f"""
         <div style="display:flex; justify-content:center; margin: 25px 0;">
             <img src="data:{mime};base64,{img_b64}" style="
-                width: 280px;
-                height: 280px;
+                width: clamp(160px, 60vw, 280px);
+                height: clamp(160px, 60vw, 280px);
                 object-fit: cover;
                 border-radius: 50%;
                 border: 5px solid #ffdb70;
@@ -224,7 +224,7 @@ else:
         image_like = [f for f in files_here if f.lower().endswith((".jpg", ".jpeg", ".png"))]
         st.caption(f"Looking in: {BASE_DIR}")
         if image_like:
-            st.caption(f"Image files found here: {', '.join(image_like)} — none named exactly 'ag_picture.png'")
+            st.caption(f"Image files found here: {', '.join(image_like)} — none named exactly 'ag_picture.jpg'")
         else:
             st.caption("No .jpg/.jpeg/.png files found in this folder at all.")
     except Exception:
@@ -237,6 +237,10 @@ intro_html = """
 <style>
   body { margin: 0; padding: 0; font-family: 'Trebuchet MS', sans-serif; background: transparent; }
   p { color: #ffccbc; font-size: 1.3rem; text-align: center; line-height: 1.5; margin: 0; }
+
+  @media (max-width: 480px) {
+    p { font-size: 1rem; }
+  }
 </style>
 </head>
 <body>
@@ -244,7 +248,7 @@ intro_html = """
 </body>
 </html>
 """
-components.html(intro_html, height=110, scrolling=False)
+components.html(intro_html, height=150, scrolling=True)
 
 # THE SILVER SURVIVAL GUIDE (Likes & Dislikes) — rendered as a real embedded HTML
 # component instead of st.markdown, since that's the only method proven to
@@ -258,7 +262,7 @@ survival_guide_html = """
 <style>
   body { margin: 0; padding: 0; font-family: 'Trebuchet MS', sans-serif; background: transparent; }
   .row { display: flex; gap: 16px; }
-  .col { flex: 1; }
+  .col { flex: 1; min-width: 0; }
   .box {
       background: linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
       border: 3px solid #ffdb70;
@@ -271,6 +275,14 @@ survival_guide_html = """
   .label-not { color: #40c4ff; font-weight: bold; font-size: 1.15rem; margin: 0 0 10px 0; }
   .item-love { color: #ffe0ec; font-size: 1.05rem; margin: 8px 0; }
   .item-not { color: #d4f1ff; font-size: 1.05rem; margin: 8px 0; }
+
+  /* Mobile: stack the two boxes instead of squeezing them side-by-side */
+  @media (max-width: 480px) {
+    .row { flex-direction: column; }
+    .box { padding: 12px 16px; }
+    .label-love, .label-not { font-size: 1.05rem; margin-bottom: 6px; }
+    .item-love, .item-not { font-size: 0.95rem; margin: 5px 0; }
+  }
 </style>
 </head>
 <body>
@@ -300,7 +312,7 @@ survival_guide_html = """
 </html>
 """
 
-components.html(survival_guide_html, height=340, scrolling=False)
+components.html(survival_guide_html, height=560, scrolling=True)
 
 st.divider()
 
@@ -380,6 +392,12 @@ vibe_box_html = f"""
       margin: 0;
       line-height: 1.5;
   }}
+
+  /* Mobile: slightly smaller text and tighter padding so long messages fit */
+  @media (max-width: 480px) {{
+    .box {{ padding: 14px; }}
+    p {{ font-size: 1.1rem; }}
+  }}
 </style>
 </head>
 <body>
@@ -389,7 +407,7 @@ vibe_box_html = f"""
 </body>
 </html>
 """
-components.html(vibe_box_html, height=160, scrolling=False)
+components.html(vibe_box_html, height=220, scrolling=True)
 
 st.divider()
 
@@ -432,6 +450,10 @@ footer_html = """
 <style>
   body { margin: 0; padding: 0; font-family: 'Trebuchet MS', sans-serif; background: transparent; }
   p { color: #ce93d8; font-size: 1.15rem; font-style: italic; text-align: center; margin: 0; }
+
+  @media (max-width: 480px) {
+    p { font-size: 0.9rem; }
+  }
 </style>
 </head>
 <body>
@@ -439,4 +461,4 @@ footer_html = """
 </body>
 </html>
 """
-components.html(footer_html, height=60, scrolling=False)
+components.html(footer_html, height=80, scrolling=True)
