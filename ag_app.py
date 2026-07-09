@@ -113,7 +113,7 @@ st.markdown("""
 if "access_granted" not in st.session_state:
     st.session_state.access_granted = False
 if "current_message" not in st.session_state:
-    st.session_state.current_message = "Click a button below to unpack a special birthday surprise!"
+    st.session_state.current_message = "Click a button above to unpack a special birthday surprise!"
     st.session_state.current_category = "🎁 Welcome"
 if "snack_rain_key" not in st.session_state:
     st.session_state.snack_rain_key = 0
